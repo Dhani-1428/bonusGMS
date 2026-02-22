@@ -651,6 +651,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
 export function useI18n() {
   const ctx = useContext(I18nContext)
-  if (!ctx) throw new Error("useI18n must be used within I18nProvider")
+  if (!ctx) {
+    // Fallback for SSR/SSG when context might not be available yet
+    return {
+      locale: "en" as Locale,
+      setLocale: () => {},
+      t: (key: keyof TranslationKeys) => translations.en[key] ?? key,
+    }
+  }
   return ctx
 }

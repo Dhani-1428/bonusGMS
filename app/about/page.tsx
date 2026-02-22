@@ -3,6 +3,8 @@ import { ChevronRight, Users, Award, Truck, Globe } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+export const dynamic = 'force-dynamic'
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col">
