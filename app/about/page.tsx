@@ -3,6 +3,7 @@ import { ChevronRight, Users, Award, Truck, Globe } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+// Force dynamic rendering to avoid SSR issues with i18n
 export const dynamic = 'force-dynamic'
 
 export default function AboutPage() {
