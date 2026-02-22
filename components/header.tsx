@@ -20,7 +20,7 @@ import {
 import { categories, brands, searchProducts } from "@/lib/data"
 import type { Category, Brand } from "@/lib/data"
 import { MobileNav } from "./mobile-nav"
-import { useI18n, languages } from "@/lib/i18n"
+import { useI18n, languages, translations } from "@/lib/i18n"
 
 /* ─── Check if category has any grandchildren (deeper nesting) ─── */
 function hasGrandchildren(category: Category): boolean {
@@ -353,7 +353,13 @@ function LanguageDropdown() {
 /* ─── Main Header ─── */
 export function Header() {
   const [cartCount] = useState(0)
-  const { t } = useI18n()
+  const i18n = useI18n()
+  
+  // Ensure translation function is always available, fallback to English
+  const t = i18n?.t || ((key: string) => {
+    const enTranslations = translations.en as Record<string, string>
+    return enTranslations[key] || key
+  })
 
   /* Build category lookup map from the full categories array */
   const categoryMap = new Map<string, Category>()

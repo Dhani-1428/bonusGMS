@@ -95,7 +95,7 @@ type TranslationKeys = {
 }
 
 /* ─── Translations ─── */
-const translations: Record<Locale, TranslationKeys> = {
+export const translations: Record<Locale, TranslationKeys> = {
   en: {
     freeShipment: "Free Shipment",
     highQuality: "High Quality",
