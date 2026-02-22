@@ -33,7 +33,11 @@ function CategoryItem({ cat, currentSlug, depth = 0 }: { cat: Category; currentS
 }
 
 export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
-  const { t } = useI18n()
+  const i18n = useI18n()
+  const t = i18n?.t || ((key: string) => {
+    const enTranslations = translations.en as Record<string, string>
+    return enTranslations[key] || key
+  })
   
   // Find which top-level category we're in
   let activeCat: Category | undefined
