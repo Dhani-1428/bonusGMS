@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { categories, findCategoryBySlug } from "@/lib/data"
 import type { Category } from "@/lib/data"
-import { useI18n } from "@/lib/i18n"
+import { useI18n, translations } from "@/lib/i18n"
 
 function CategoryItem({ cat, currentSlug, depth = 0 }: { cat: Category; currentSlug: string; depth?: number }) {
   const isActive = cat.slug === currentSlug

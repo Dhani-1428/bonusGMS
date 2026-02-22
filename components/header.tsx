@@ -297,7 +297,13 @@ function LiveSearch() {
 
 /* ─── Language Dropdown ─── */
 function LanguageDropdown() {
-  const { locale, setLocale, t } = useI18n()
+  const i18n = useI18n()
+  const locale = i18n?.locale || "en"
+  const setLocale = i18n?.setLocale || (() => {})
+  const t = i18n?.t || ((key: string) => {
+    const enTranslations = translations.en as Record<string, string>
+    return enTranslations[key] || key
+  })
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const currentLang = languages.find((l) => l.code === locale) || languages[2] // Default to English
@@ -356,7 +362,7 @@ export function Header() {
   const i18n = useI18n()
   
   // Ensure translation function is always available, fallback to English
-  const t = i18n?.t || ((key: string) => {
+  const t: (key: string) => string = (i18n && i18n.t) ? i18n.t : ((key: string) => {
     const enTranslations = translations.en as Record<string, string>
     return enTranslations[key] || key
   })
