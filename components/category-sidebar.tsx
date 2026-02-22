@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { categories, findCategoryBySlug } from "@/lib/data"
 import type { Category } from "@/lib/data"
