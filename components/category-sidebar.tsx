@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { categories, findCategoryBySlug } from "@/lib/data"
 import type { Category } from "@/lib/data"
+import { useI18n } from "@/lib/i18n"
 
 function CategoryItem({ cat, currentSlug, depth = 0 }: { cat: Category; currentSlug: string; depth?: number }) {
   const isActive = cat.slug === currentSlug
@@ -30,6 +31,8 @@ function CategoryItem({ cat, currentSlug, depth = 0 }: { cat: Category; currentS
 }
 
 export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
+  const { t } = useI18n()
+  
   // Find which top-level category we're in
   let activeCat: Category | undefined
   for (const cat of categories) {
@@ -41,14 +44,88 @@ export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
 
   const displayCategories = activeCat ? [activeCat] : categories
 
+  // Collect all category items to display in two columns
+  const allCategoryItems: { name: string; slug: string }[] = []
+  displayCategories.forEach((cat) => {
+    if (cat.children && cat.children.length > 0) {
+      cat.children.forEach((child) => {
+        allCategoryItems.push({ name: child.name, slug: child.slug })
+      })
+    } else {
+      allCategoryItems.push({ name: cat.name, slug: cat.slug })
+    }
+  })
+
+  // Split into two columns with 7 items each
+  const leftColumn = allCategoryItems.slice(0, 7)
+  const rightColumn = allCategoryItems.slice(7, 14)
+
   return (
     <div className="rounded-xl border border-border bg-card p-4">
-      <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-card-foreground">Categories</h3>
-      <ul className="flex flex-col">
-        {displayCategories.map((cat) => (
-          <CategoryItem key={cat.slug} cat={cat} currentSlug={currentSlug} />
-        ))}
-      </ul>
+      <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-primary">{t("categories")}</h3>
+      <div className="max-h-[500px] overflow-y-auto">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+          {/* Left Column */}
+          <div className="flex flex-col">
+            {leftColumn.map((item) => {
+              const isActive = item.slug === currentSlug
+              return (
+                <Link
+                  key={item.slug}
+                  href={`/category/${item.slug}`}
+                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                    isActive
+                      ? "text-primary"
+                      : "text-primary hover:opacity-80"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
+          </div>
+          {/* Right Column */}
+          <div className="flex flex-col">
+            {rightColumn.map((item) => {
+              const isActive = item.slug === currentSlug
+              return (
+                <Link
+                  key={item.slug}
+                  href={`/category/${item.slug}`}
+                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                    isActive
+                      ? "text-primary"
+                      : "text-primary hover:opacity-80"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+        {/* Show remaining items if more than 14 */}
+        {allCategoryItems.length > 14 && (
+          <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1">
+            {allCategoryItems.slice(14).map((item) => {
+              const isActive = item.slug === currentSlug
+              return (
+                <Link
+                  key={item.slug}
+                  href={`/category/${item.slug}`}
+                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                    isActive
+                      ? "text-primary"
+                      : "text-primary hover:opacity-80"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Price Filter */}
       <div className="mt-6 border-t border-border pt-4">

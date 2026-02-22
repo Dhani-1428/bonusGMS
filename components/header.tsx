@@ -20,6 +20,7 @@ import {
 import { categories, brands, searchProducts } from "@/lib/data"
 import type { Category, Brand } from "@/lib/data"
 import { MobileNav } from "./mobile-nav"
+import { useI18n, languages } from "@/lib/i18n"
 
 /* ─── Check if category has any grandchildren (deeper nesting) ─── */
 function hasGrandchildren(category: Category): boolean {
@@ -135,9 +136,9 @@ function BrandMegaMenu() {
     <div className="absolute left-0 top-full z-50 hidden w-[680px] border border-border bg-card shadow-2xl group-hover:block">
       <div className="flex">
         {/* Left: brand list */}
-        <div className="w-48 flex-shrink-0 border-r border-border bg-secondary/40">
+          <div className="w-48 flex-shrink-0 border-r border-border bg-secondary/40">
           <div className="px-3 py-2 border-b border-border">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Brands</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{t("brands")}</span>
           </div>
           <div className="max-h-[380px] overflow-y-auto">
             {brands.map((brand) => (
@@ -163,12 +164,12 @@ function BrandMegaMenu() {
           {activeBrand ? (
             <>
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground">{activeBrand.name} Models</h3>
+                <h3 className="text-sm font-bold text-foreground">{activeBrand.name} {t("models")}</h3>
                 <Link
                   href={`/brand/${activeBrand.slug}`}
                   className="text-[11px] font-semibold text-primary hover:underline"
                 >
-                  View all {activeBrand.name} products
+                  {t("viewAllBrandProducts")}
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-1">
@@ -185,7 +186,7 @@ function BrandMegaMenu() {
             </>
           ) : (
             <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-              Hover over a brand to see models
+              {t("hoverBrand")}
             </div>
           )}
         </div>
@@ -231,7 +232,7 @@ function LiveSearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          placeholder="What are you searching for?"
+          placeholder={t("searchPlaceholder")}
           className="w-full border border-input bg-background px-4 py-2.5 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
         />
         {query && (
@@ -280,12 +281,12 @@ function LiveSearch() {
                 onClick={() => setIsFocused(false)}
                 className="block px-4 py-2.5 text-center text-xs font-semibold text-primary hover:bg-primary/5 transition-colors"
               >
-                View all results for &ldquo;{query}&rdquo;
+                {t("viewAllResults")} &ldquo;{query}&rdquo;
               </Link>
             </>
           ) : (
-            <div className="px-4 py-6 text-center text-xs text-muted-foreground">
-              No products found for &ldquo;{query}&rdquo;
+              <div className="px-4 py-6 text-center text-xs text-muted-foreground">
+              {t("noProductsFound")} &ldquo;{query}&rdquo;
             </div>
           )}
         </div>
@@ -294,9 +295,65 @@ function LiveSearch() {
   )
 }
 
+/* ─── Language Dropdown ─── */
+function LanguageDropdown() {
+  const { locale, setLocale, t } = useI18n()
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const currentLang = languages.find((l) => l.code === locale) || languages[2] // Default to English
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-1 font-semibold hover:opacity-80 transition-opacity"
+        aria-label="Select language"
+      >
+        <span className="mr-1">{currentLang.flag}</span>
+        {currentLang.code.toUpperCase()}
+        <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 top-full z-50 mt-1 w-[180px] border border-border bg-card shadow-xl">
+          <div className="max-h-[320px] overflow-y-auto">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  setLocale(lang.code)
+                  setIsOpen(false)
+                }}
+                className={`w-full flex items-center gap-2 px-3 py-2 text-left text-sm transition-colors ${
+                  locale === lang.code
+                    ? "bg-primary/10 text-primary font-semibold"
+                    : "text-foreground hover:bg-primary/5"
+                }`}
+              >
+                <span className="text-base">{lang.flag}</span>
+                <span>{lang.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ─── Main Header ─── */
 export function Header() {
   const [cartCount] = useState(0)
+  const { t } = useI18n()
 
   /* Build category lookup map from the full categories array */
   const categoryMap = new Map<string, Category>()
@@ -313,17 +370,17 @@ export function Header() {
           <div className="flex items-center gap-5">
             <span className="flex items-center gap-1.5 font-semibold">
               <Truck className="h-3.5 w-3.5" />
-              Free Shipment
+              {t("freeShipment")}
             </span>
             <span className="hidden items-center gap-1.5 font-semibold sm:flex">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5" aria-hidden="true">
                 <path d="m 4.5 12.75 l 6 6 9 -13.5" />
               </svg>
-              High Quality
+              {t("highQuality")}
             </span>
             <span className="hidden items-center gap-1.5 font-semibold md:flex">
               <CheckCircle className="h-3.5 w-3.5" />
-              Very Low Price
+              {t("veryLowPrice")}
             </span>
             <span className="hidden items-center gap-1.5 lg:flex">
               <Phone className="h-3.5 w-3.5" />
@@ -334,20 +391,17 @@ export function Header() {
           {/* Right: utility links */}
           <div className="flex items-center gap-4">
             <Link href="/about" className="hidden font-semibold hover:underline lg:inline">
-              Blog
+              {t("blog")}
             </Link>
             <Link href="/brands" className="hidden font-semibold hover:underline lg:inline">
-              Brands
+              {t("brands")}
             </Link>
-            <button className="hidden items-center hover:opacity-80 transition-opacity lg:flex" aria-label="Compare products">
+            <button className="hidden items-center hover:opacity-80 transition-opacity lg:flex" aria-label={t("compareProducts")}>
               <ArrowLeftRight className="h-3.5 w-3.5" />
             </button>
+            <LanguageDropdown />
             <button className="flex items-center gap-1 font-semibold hover:opacity-80 transition-opacity">
-              EN
-              <ChevronDown className="h-3 w-3" />
-            </button>
-            <button className="flex items-center gap-1 font-semibold hover:opacity-80 transition-opacity">
-              Support
+              {t("support")}
               <ChevronDown className="h-3 w-3" />
             </button>
             <a
@@ -391,24 +445,24 @@ export function Header() {
 
           {/* Action icons */}
           <div className="flex items-center gap-3">
-            <Link
+              <Link
               href="/account"
               className="hidden text-foreground hover:text-primary transition-colors sm:block"
-              aria-label="Account"
+              aria-label={t("account")}
             >
               <User className="h-6 w-6" />
             </Link>
             <Link
               href="/wishlist"
               className="hidden text-primary hover:text-primary/80 transition-colors sm:block"
-              aria-label="Wishlist"
+              aria-label={t("wishlist")}
             >
               <Heart className="h-6 w-6 fill-primary" />
             </Link>
             <Link
               href="/cart"
               className="relative text-primary hover:text-primary/80 transition-colors"
-              aria-label="Cart"
+              aria-label={t("cart")}
             >
               <ShoppingCart className="h-6 w-6" />
               <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
