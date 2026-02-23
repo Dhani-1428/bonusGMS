@@ -1670,12 +1670,6 @@ export const categories: Category[] = [
           },
         ],
       },
-        children: [
-          { name: "Motorola Moto E Series", slug: "motorola-moto-e" },
-          { name: "Motorola Moto G Series", slug: "motorola-moto-g" },
-          { name: "Motorola Moto Edge Series", slug: "motorola-moto-edge" },
-        ],
-      },
       {
         name: "LCD Nokia",
         slug: "lcd-nokia",
