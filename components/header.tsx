@@ -59,6 +59,264 @@ function SimpleDropdown({ category, alignRight }: { category: Category; alignRig
   )
 }
 
+/* ─── Apple Mega Menu: 7-column layout (iPhone, Apple Watch, iPad Pro, iPad, MacBook, iPad Air, iPad mini) ─── */
+function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const iphoneCat = categories.find(cat => cat.slug === "lcd-iphone")
+  const ipadCat = categories.find(cat => cat.slug === "lcd-ipad")
+  const macbookCat = categories.find(cat => cat.slug === "lcd-macbook")
+  const appleWatchCat = categories.find(cat => cat.slug === "lcd-apple-watch")
+
+  // Organize iPhone models
+  const iphoneModels = iphoneCat?.children || []
+  
+  // Organize iPad Pro models (from iPad category)
+  const ipadProModels = ipadCat?.children?.filter(item => 
+    item.name.toLowerCase().includes("pro")
+  ) || []
+  
+  // Organize standard iPad models
+  const standardIpadModels = ipadCat?.children?.filter(item => 
+    !item.name.toLowerCase().includes("pro") &&
+    !item.name.toLowerCase().includes("air") &&
+    !item.name.toLowerCase().includes("mini") &&
+    item.name.toLowerCase().startsWith("ipad")
+  ) || []
+  
+  // Organize iPad Air models
+  const ipadAirModels = ipadCat?.children?.filter(item => 
+    item.name.toLowerCase().includes("air")
+  ) || []
+  
+  // Organize iPad mini models
+  const ipadMiniModels = ipadCat?.children?.filter(item => 
+    item.name.toLowerCase().includes("mini")
+  ) || []
+
+  // Apple Watch models (we'll create a simple list)
+  const appleWatchModels = [
+    { name: "Series 11 (46mm)", slug: "apple-watch-series-11-46mm" },
+    { name: "Series 11 (42mm)", slug: "apple-watch-series-11-42mm" },
+    { name: "Series 10 (46mm)", slug: "apple-watch-series-10-46mm" },
+    { name: "Series 10 (42mm)", slug: "apple-watch-series-10-42mm" },
+    { name: "Series 9 (45mm)", slug: "apple-watch-series-9-45mm" },
+    { name: "Series 9 (41mm)", slug: "apple-watch-series-9-41mm" },
+    { name: "Series 8 (45mm)", slug: "apple-watch-series-8-45mm" },
+    { name: "Series 8 (41mm)", slug: "apple-watch-series-8-41mm" },
+    { name: "Series 7 (45mm)", slug: "apple-watch-series-7-45mm" },
+    { name: "Series 7 (41mm)", slug: "apple-watch-series-7-41mm" },
+    { name: "Series 6 (44mm)", slug: "apple-watch-series-6-44mm" },
+    { name: "Series 6 (40mm)", slug: "apple-watch-series-6-40mm" },
+    { name: "Series SE2 (44mm)", slug: "apple-watch-series-se2-44mm" },
+    { name: "Series SE2 (40mm)", slug: "apple-watch-series-se2-40mm" },
+    { name: "Series SE (44mm)", slug: "apple-watch-series-se-44mm" },
+    { name: "Series SE (40mm)", slug: "apple-watch-series-se-40mm" },
+    { name: "Series 5 (44mm)", slug: "apple-watch-series-5-44mm" },
+    { name: "Series 5 (40mm)", slug: "apple-watch-series-5-40mm" },
+    { name: "Series 4 (44mm)", slug: "apple-watch-series-4-44mm" },
+    { name: "Series 4 (40mm)", slug: "apple-watch-series-4-40mm" },
+    { name: "Series 3 (42mm)", slug: "apple-watch-series-3-42mm" },
+    { name: "Series 3 (38mm)", slug: "apple-watch-series-3-38mm" },
+  ]
+
+  // MacBook models
+  const macbookModels = [
+    { name: "13\" Unibody (A1342)", slug: "macbook-13-unibody-a1342" },
+    { name: "12\" Retina (A1534)", slug: "macbook-12-retina-a1534" },
+    { name: "Air 15\" Retina (A3241)", slug: "macbook-air-15-retina-a3241" },
+    { name: "Air 15\" M3 (A3114)", slug: "macbook-air-15-m3-a3114" },
+    { name: "Air 15\" M2 (A2941)", slug: "macbook-air-15-m2-a2941" },
+    { name: "Air 13\" M3 (A3113)", slug: "macbook-air-13-m3-a3113" },
+    { name: "Air 13\" M2 (A2681)", slug: "macbook-air-13-m2-a2681" },
+    { name: "Air 13,3\" M1 (A2337)", slug: "macbook-air-133-m1-a2337" },
+    { name: "Air 13\" (A2179)", slug: "macbook-air-13-a2179" },
+    { name: "Air 13\" (A1932)", slug: "macbook-air-13-a1932" },
+    { name: "Air 13\" (A1466)", slug: "macbook-air-13-a1466" },
+    { name: "Air 13\" (A1369)", slug: "macbook-air-13-a1369" },
+    { name: "Air 13\" Retina (A3240)", slug: "macbook-air-13-retina-a3240" },
+    { name: "Air 11\" (A1465)", slug: "macbook-air-11-a1465" },
+    { name: "Air 11\" (A1370)", slug: "macbook-air-11-a1370" },
+    { name: "Pro 17\" Unibody (A1297)", slug: "macbook-pro-17-unibody-a1297" },
+    { name: "Pro 16\" (A3186)", slug: "macbook-pro-16-a3186" },
+    { name: "Pro 16\" (A3403)", slug: "macbook-pro-16-a3403" },
+    { name: "Pro 16\" (A2991)", slug: "macbook-pro-16-a2991" },
+    { name: "Pro 16\" (A2780)", slug: "macbook-pro-16-a2780" },
+    { name: "Pro 16\" (A2485)", slug: "macbook-pro-16-a2485" },
+    { name: "Pro 16\" Retina TB (A2141)", slug: "macbook-pro-16-retina-tb-a2141" },
+    { name: "Pro 15\" Retina TB (A1990)", slug: "macbook-pro-15-retina-tb-a1990" },
+    { name: "Pro 15\" Retina (A1707)", slug: "macbook-pro-15-retina-a1707" },
+    { name: "Pro 15\" Retina (A1398)", slug: "macbook-pro-15-retina-a1398" },
+    { name: "Pro 15\" Unibody (A1286)", slug: "macbook-pro-15-unibody-a1286" },
+    { name: "Pro 14\" (A3185)", slug: "macbook-pro-14-a3185" },
+    { name: "Pro 14\" (A3401)", slug: "macbook-pro-14-a3401" },
+    { name: "Pro 14\" (A3112)", slug: "macbook-pro-14-a3112" },
+    { name: "Pro 14\" (A2992)", slug: "macbook-pro-14-a2992" },
+  ]
+
+  return (
+    <div
+      className={`absolute top-full z-50 hidden border border-border bg-card shadow-xl group-hover:block w-[1120px] ${
+        alignRight ? "right-0" : "left-0"
+      }`}
+    >
+      <div className="grid grid-cols-7 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        {/* Column 1: iPhone */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-iphone"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            iPhone
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {iphoneModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Apple Watch */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-apple-watch"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            Apple Watch
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {appleWatchModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: iPad Pro */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-ipad"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            iPad Pro
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {ipadProModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: iPad */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-ipad"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            iPad
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {standardIpadModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 5: MacBook */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-macbook"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            MacBook
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {macbookModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 6: iPad Air */}
+        <div className="border-r border-border px-4 py-3">
+          <Link
+            href="/category/lcd-ipad"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            iPad Air
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {ipadAirModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 7: iPad mini */}
+        <div className="px-4 py-3">
+          <Link
+            href="/category/lcd-ipad"
+            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
+          >
+            iPad mini
+          </Link>
+          <ul className="flex flex-col space-y-0.5">
+            {ipadMiniModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Mega Menu: compressed LCD-style grid with subcategories + grandchildren ─── */
 function CategoryMegaMenu({ category, alignRight }: { category: Category; alignRight?: boolean }) {
   /* Separate children WITH grandchildren from those WITHOUT */
@@ -525,11 +783,25 @@ export function Header() {
               return (
                 <>
                   {orderedBrands.map((brand) => {
-                    // Find the LCD category for this brand
-                    let brandCategory: Category | undefined
+                    // Special handling for Apple - use the 7-column mega menu
                     if (brand.name === "Apple") {
-                      brandCategory = categories.find((cat) => cat.slug === "lcd-for-iphone" || cat.name === "LCD for IPhone")
-                    } else if (brand.name === "Samsung") {
+                      return (
+                        <div key={brand.slug} className="group relative">
+                          <Link
+                            href={`/brand/${brand.slug}`}
+                            className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                          >
+                            {brand.name}
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </Link>
+                          <AppleMegaMenu alignRight={false} />
+                        </div>
+                      )
+                    }
+                    
+                    // Find the LCD category for other brands
+                    let brandCategory: Category | undefined
+                    if (brand.name === "Samsung") {
                       brandCategory = categories.find((cat) => cat.slug === "lcd-samsung" || cat.name === "LCD Samsung")
                     } else if (brand.name === "Xiaomi") {
                       brandCategory = categories.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
