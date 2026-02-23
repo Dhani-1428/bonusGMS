@@ -488,6 +488,149 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
   )
 }
 
+/* ─── Motorola Mega Menu: 5-column layout (Razr, Edge, Moto G, Moto E, ThinkPhone) ─── */
+function MotorolaMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const motorolaCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-motorola")
+
+  // Organize Motorola series
+  const razr = motorolaCat?.children?.find(series => series.slug === "razr")
+  const edge = motorolaCat?.children?.find(series => series.slug === "edge")
+  const motoG = motorolaCat?.children?.find(series => series.slug === "moto-g")
+  const motoE = motorolaCat?.children?.find(series => series.slug === "moto-e")
+  const thinkPhone = motorolaCat?.children?.find(series => series.slug === "thinkphone")
+
+  return (
+    <div
+      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] ${
+        alignRight ? "right-0" : "left-0"
+      }`}
+    >
+      <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Razr */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/razr"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Razr
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {razr?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Edge */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/edge"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Edge
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {edge?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: Moto G */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/moto-g"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Moto G
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {motoG?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Moto E */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/moto-e"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Moto E
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {motoE?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 5: ThinkPhone */}
+        <div className="px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/thinkphone"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              ThinkPhone
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {thinkPhone?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Honor Mega Menu: 5-column layout (Magic, Numbered Series, X Series, N, Autres) ─── */
 function HonorMegaMenu({ alignRight }: { alignRight?: boolean }) {
   const lcdCategory = categories.find(cat => cat.slug === "lcd")
@@ -1449,12 +1592,25 @@ export function Header() {
                       )
                     }
                     
+                    // Special handling for Motorola - use the 5-column mega menu
+                    if (brand.name === "Motorola") {
+                      return (
+                        <div key={brand.slug} className="group relative">
+                          <Link
+                            href={`/brand/${brand.slug}`}
+                            className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                          >
+                            {brand.name}
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </Link>
+                          <MotorolaMegaMenu alignRight={false} />
+                        </div>
+                      )
+                    }
+                    
                     // Find the LCD category for other brands
                     const lcdCategory = categories.find(cat => cat.slug === "lcd")
                     let brandCategory: Category | undefined
-                    if (brand.name === "Motorola") {
-                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
-                    }
                     
                     // Fallback: search by slug or name within LCD category
                     if (!brandCategory && lcdCategory) {
