@@ -628,12 +628,22 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | null>(null)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en")
+  // Load locale from localStorage on mount, default to "en"
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("bonusgsm-locale") as Locale | null
+      if (saved && languages.some(l => l.code === saved)) {
+        return saved
+      }
+    }
+    return "en"
+  })
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l)
     if (typeof document !== "undefined") {
       document.documentElement.lang = l
+      localStorage.setItem("bonusgsm-locale", l)
     }
   }, [])
 
