@@ -165,14 +165,14 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-iphone"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            iPhone
+            IPHONE
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {iphoneModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
