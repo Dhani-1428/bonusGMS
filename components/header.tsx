@@ -517,16 +517,16 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-[100] hidden border border-gray-200 bg-white shadow-xl group-hover:block"
+      className="absolute top-full z-[100] hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px]"
       style={{ 
-        width: '1400px',
-        maxWidth: 'min(1400px, calc(100vw - 1rem))',
+        maxWidth: 'min(1400px, calc(100vw - 2rem))',
         right: '0',
         left: 'auto',
-        position: 'absolute'
+        position: 'absolute',
+        minWidth: '1200px'
       }}
     >
-      <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto overflow-x-visible scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: Asus */}
         <div className="border-r border-gray-200 px-2 py-4">
           <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
