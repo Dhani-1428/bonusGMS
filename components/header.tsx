@@ -201,6 +201,13 @@ function LiveSearch() {
   const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const i18n = useI18n()
+  
+  // Ensure translation function is always available, fallback to English
+  const t: (key: string) => string = (i18n && i18n.t) ? i18n.t : ((key: string) => {
+    const enTranslations = translations.en as Record<string, string>
+    return enTranslations[key] || key
+  })
 
   const results = query.length >= 2 ? searchProducts(query).slice(0, 6) : []
   const showDropdown = isFocused && query.length >= 2
