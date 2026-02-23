@@ -123,14 +123,14 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
   // MacBook models
   const macbookModels = [
     { name: "13\" Unibody (A1342)", slug: "macbook-13-unibody-a1342" },
-    { name: "12\" Retina (A1534)", slug: "macbook-12-retina-a1534" },
+    { name: "12'' Retina (A1534)", slug: "macbook-12-retina-a1534" },
     { name: "Air 15\" Retina (A3241)", slug: "macbook-air-15-retina-a3241" },
     { name: "Air 15\" M3 (A3114)", slug: "macbook-air-15-m3-a3114" },
     { name: "Air 15\" M2 (A2941)", slug: "macbook-air-15-m2-a2941" },
     { name: "Air 13\" M3 (A3113)", slug: "macbook-air-13-m3-a3113" },
     { name: "Air 13\" M2 (A2681)", slug: "macbook-air-13-m2-a2681" },
     { name: "Air 13,3\" M1 (A2337)", slug: "macbook-air-133-m1-a2337" },
-    { name: "Air 13\" (A2179)", slug: "macbook-air-13-a2179" },
+    { name: "Air 13'' (A2179)", slug: "macbook-air-13-a2179" },
     { name: "Air 13\" (A1932)", slug: "macbook-air-13-a1932" },
     { name: "Air 13\" (A1466)", slug: "macbook-air-13-a1466" },
     { name: "Air 13\" (A1369)", slug: "macbook-air-13-a1369" },
@@ -152,6 +152,19 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
     { name: "Pro 14\" (A3401)", slug: "macbook-pro-14-a3401" },
     { name: "Pro 14\" (A3112)", slug: "macbook-pro-14-a3112" },
     { name: "Pro 14\" (A2992)", slug: "macbook-pro-14-a2992" },
+    { name: "Pro 14\" (A2918)", slug: "macbook-pro-14-a2918" },
+    { name: "Pro 14\" (A2779)", slug: "macbook-pro-14-a2779" },
+    { name: "Pro 14\" (A2442)", slug: "macbook-pro-14-a2442" },
+    { name: "Pro 13\" Retina (A2338)", slug: "macbook-pro-13-retina-a2338" },
+    { name: "Pro 13\" Retina TB (A2289)", slug: "macbook-pro-13-retina-tb-a2289" },
+    { name: "Pro 13\" Retina TB (A2251)", slug: "macbook-pro-13-retina-tb-a2251" },
+    { name: "Pro 13\" Retina TB (A2159)", slug: "macbook-pro-13-retina-tb-a2159" },
+    { name: "Pro 13\" Retina TB (A1989)", slug: "macbook-pro-13-retina-tb-a1989" },
+    { name: "Pro 13\" Retina (A1708)", slug: "macbook-pro-13-retina-a1708" },
+    { name: "Pro 13\" Retina TB (A1706)", slug: "macbook-pro-13-retina-tb-a1706" },
+    { name: "Pro 13\" Retina (A1502)", slug: "macbook-pro-13-retina-a1502" },
+    { name: "Pro 13\" Retina (A1425)", slug: "macbook-pro-13-retina-a1425" },
+    { name: "Pro 13\" Unibody (A1278)", slug: "macbook-pro-13-unibody-a1278" },
   ]
 
   return (
