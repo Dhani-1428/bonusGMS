@@ -313,7 +313,7 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className={`absolute top-full left-0 z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] mt-0`}
+      className={`absolute top-full left-0 z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-2rem)] mt-0`}
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: Redmi */}
