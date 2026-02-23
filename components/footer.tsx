@@ -1,7 +1,15 @@
+"use client"
+
 import Link from "next/link"
 import { Phone, Mail, MapPin, Clock, Truck, Shield, Award, Headphones } from "lucide-react"
+import { useI18n, translations } from "@/lib/i18n"
 
 export function Footer() {
+  const i18n = useI18n()
+  const t = i18n?.t || ((key: string) => {
+    const enTranslations = translations.en as Record<string, string>
+    return enTranslations[key] || key
+  })
   return (
     <footer>
       {/* Features bar */}
@@ -10,29 +18,29 @@ export function Footer() {
           <div className="flex items-center gap-3 text-primary-foreground">
             <Truck className="h-8 w-8 flex-shrink-0" />
             <div>
-              <p className="text-sm font-semibold">Free Shipment</p>
-              <p className="text-xs opacity-80">On all orders</p>
+              <p className="text-sm font-semibold">{t("freeShipment")}</p>
+              <p className="text-xs opacity-80">{t("freeShipmentDesc")}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 text-primary-foreground">
             <Shield className="h-8 w-8 flex-shrink-0" />
             <div>
-              <p className="text-sm font-semibold">High Quality</p>
-              <p className="text-xs opacity-80">Tested products</p>
+              <p className="text-sm font-semibold">{t("highQuality")}</p>
+              <p className="text-xs opacity-80">{t("highQualityDesc")}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 text-primary-foreground">
             <Award className="h-8 w-8 flex-shrink-0" />
             <div>
-              <p className="text-sm font-semibold">Very Low Price</p>
-              <p className="text-xs opacity-80">Best wholesale prices</p>
+              <p className="text-sm font-semibold">{t("veryLowPrice")}</p>
+              <p className="text-xs opacity-80">{t("veryLowPriceDesc")}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 text-primary-foreground">
             <Headphones className="h-8 w-8 flex-shrink-0" />
             <div>
-              <p className="text-sm font-semibold">24/7 Support</p>
-              <p className="text-xs opacity-80">WhatsApp available</p>
+              <p className="text-sm font-semibold">{t("support247")}</p>
+              <p className="text-xs opacity-80">{t("support247Desc")}</p>
             </div>
           </div>
         </div>
@@ -75,20 +83,20 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">Information</h3>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">{t("information")}</h3>
             <ul className="flex flex-col gap-2 text-sm opacity-80">
-              <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/shipping" className="hover:text-primary transition-colors">Shipping Info</Link></li>
-              <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link href="/about" className="hover:text-primary transition-colors">{t("aboutUs")}</Link></li>
+              <li><Link href="/contact" className="hover:text-primary transition-colors">{t("contact")}</Link></li>
+              <li><Link href="/terms" className="hover:text-primary transition-colors">{t("termsConditions")}</Link></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-colors">{t("privacyPolicy")}</Link></li>
+              <li><Link href="/shipping" className="hover:text-primary transition-colors">{t("shippingInfo")}</Link></li>
+              <li><Link href="/faq" className="hover:text-primary transition-colors">{t("faq")}</Link></li>
             </ul>
           </div>
 
           {/* Categories */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">Categories</h3>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">{t("categories")}</h3>
             <ul className="flex flex-col gap-2 text-sm opacity-80">
               <li><Link href="/category/gx" className="hover:text-primary transition-colors">GX (MT Tech)</Link></li>
               <li><Link href="/category/lcd" className="hover:text-primary transition-colors">LCD Screens</Link></li>
@@ -101,15 +109,15 @@ export function Footer() {
 
           {/* Account */}
           <div>
-            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">My Account</h3>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider">{t("myAccount")}</h3>
             <ul className="flex flex-col gap-2 text-sm opacity-80">
-              <li><Link href="/account" className="hover:text-primary transition-colors">My Account</Link></li>
-              <li><Link href="/cart" className="hover:text-primary transition-colors">Shopping Cart</Link></li>
-              <li><Link href="/wishlist" className="hover:text-primary transition-colors">Wishlist</Link></li>
-              <li><Link href="/account/orders" className="hover:text-primary transition-colors">Order History</Link></li>
+              <li><Link href="/account" className="hover:text-primary transition-colors">{t("myAccount")}</Link></li>
+              <li><Link href="/cart" className="hover:text-primary transition-colors">{t("shoppingCart")}</Link></li>
+              <li><Link href="/wishlist" className="hover:text-primary transition-colors">{t("wishlist")}</Link></li>
+              <li><Link href="/account/orders" className="hover:text-primary transition-colors">{t("orderHistory")}</Link></li>
             </ul>
             <div className="mt-6">
-              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider">Payment Methods</h3>
+              <h3 className="mb-3 text-sm font-bold uppercase tracking-wider">{t("paymentMethods")}</h3>
               <div className="flex flex-wrap gap-2 text-xs opacity-60">
                 <span className="rounded bg-card/10 px-2 py-1">PayPal</span>
                 <span className="rounded bg-card/10 px-2 py-1">iDEAL</span>
@@ -125,8 +133,8 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-card/10">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs opacity-60 sm:flex-row">
-            <p>2024 BonusGSM. All rights reserved.</p>
-            <p>Wholesale Smartphone LCD Parts & Accessories</p>
+            <p>2024 BonusGSM. {t("allRightsReserved")}</p>
+            <p>{t("wholesaleSmartphone")}</p>
           </div>
         </div>
       </div>

@@ -337,8 +337,8 @@ function LanguageDropdown() {
         <ChevronDown className={`h-3 w-3 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="absolute right-0 top-full z-50 mt-1 w-[180px] border border-border bg-card shadow-xl">
-          <div className="max-h-[320px] overflow-y-auto">
+        <div className="absolute right-0 top-full z-50 mt-1 w-[200px] border border-border bg-card shadow-xl rounded-md overflow-hidden">
+          <div className="max-h-[360px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {languages.map((lang) => (
               <button
                 key={lang.code}

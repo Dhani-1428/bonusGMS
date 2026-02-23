@@ -68,21 +68,21 @@ export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
 
   return (
     <div className="rounded-xl border border-border bg-card p-4">
-      <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-primary">{t("categories")}</h3>
-      <div className="max-h-[500px] overflow-y-auto">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-primary">{t("categories")}</h3>
+      <div className="max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2">
           {/* Left Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-1.5">
             {leftColumn.map((item) => {
               const isActive = item.slug === currentSlug
               return (
                 <Link
                   key={item.slug}
                   href={`/category/${item.slug}`}
-                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                  className={`block py-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 ${
                     isActive
-                      ? "text-primary"
-                      : "text-primary hover:opacity-80"
+                      ? "text-primary underline decoration-2 underline-offset-2"
+                      : "text-primary hover:opacity-90 hover:underline decoration-1 underline-offset-2"
                   }`}
                 >
                   {item.name}
@@ -91,17 +91,17 @@ export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
             })}
           </div>
           {/* Right Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-1.5">
             {rightColumn.map((item) => {
               const isActive = item.slug === currentSlug
               return (
                 <Link
                   key={item.slug}
                   href={`/category/${item.slug}`}
-                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                  className={`block py-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 ${
                     isActive
-                      ? "text-primary"
-                      : "text-primary hover:opacity-80"
+                      ? "text-primary underline decoration-2 underline-offset-2"
+                      : "text-primary hover:opacity-90 hover:underline decoration-1 underline-offset-2"
                   }`}
                 >
                   {item.name}
@@ -112,17 +112,17 @@ export function CategorySidebar({ currentSlug }: { currentSlug: string }) {
         </div>
         {/* Show remaining items if more than 14 */}
         {allCategoryItems.length > 14 && (
-          <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1">
+          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
             {allCategoryItems.slice(14).map((item) => {
               const isActive = item.slug === currentSlug
               return (
                 <Link
                   key={item.slug}
                   href={`/category/${item.slug}`}
-                  className={`block py-1.5 text-sm font-bold uppercase transition-colors ${
+                  className={`block py-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 ${
                     isActive
-                      ? "text-primary"
-                      : "text-primary hover:opacity-80"
+                      ? "text-primary underline decoration-2 underline-offset-2"
+                      : "text-primary hover:opacity-90 hover:underline decoration-1 underline-offset-2"
                   }`}
                 >
                   {item.name}
