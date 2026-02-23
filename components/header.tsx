@@ -517,12 +517,11 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1100px] max-w-[calc(100vw-1rem)]"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px]"
       style={{ 
-        maxWidth: 'min(1100px, calc(100vw - 1rem))',
+        maxWidth: 'min(1400px, calc(100vw - 1rem))',
         right: '0',
-        left: 'auto',
-        transform: 'translateX(0)'
+        left: 'auto'
       }}
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
