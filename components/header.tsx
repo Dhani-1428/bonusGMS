@@ -61,10 +61,12 @@ function SimpleDropdown({ category, alignRight }: { category: Category; alignRig
 
 /* ─── Apple Mega Menu: 7-column layout (iPhone, Apple Watch, iPad Pro, iPad, MacBook, iPad Air, iPad mini) ─── */
 function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
-  const iphoneCat = categories.find(cat => cat.slug === "lcd-iphone")
-  const ipadCat = categories.find(cat => cat.slug === "lcd-ipad")
-  const macbookCat = categories.find(cat => cat.slug === "lcd-macbook")
-  const appleWatchCat = categories.find(cat => cat.slug === "lcd-apple-watch")
+  // Find LCD category first, then find children within it
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const iphoneCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-iphone")
+  const ipadCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-ipad")
+  const macbookCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-macbook")
+  const appleWatchCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-apple-watch")
 
   // Organize iPhone models
   const iphoneModels = iphoneCat?.children || []
