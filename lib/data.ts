@@ -300,6 +300,7 @@ export const categories: Category[] = [
         name: "LCD for IPhone",
         slug: "lcd-iphone",
         children: [
+          { name: "iPhone", slug: "iphone" },
           { name: "iPhone Air", slug: "iphone-air" },
           { name: "iPhone 17 Pro Max", slug: "iphone-17-pro-max" },
           { name: "iPhone 17 Pro", slug: "iphone-17-pro" },
