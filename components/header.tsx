@@ -517,17 +517,18 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-1rem)]"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1100px] max-w-[calc(100vw-1rem)]"
       style={{ 
-        maxWidth: 'min(1200px, calc(100vw - 1rem))',
+        maxWidth: 'min(1100px, calc(100vw - 1rem))',
         right: '0',
-        left: 'auto'
+        left: 'auto',
+        transform: 'translateX(0)'
       }}
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: Asus */}
         <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/asus"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -560,8 +561,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 2: Blackview */}
-        <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/blackview"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -584,8 +585,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 3: Google */}
-        <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/google"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -618,8 +619,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 4: Huawei */}
-        <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/huawei"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -652,8 +653,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 5: Microsoft */}
-        <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/microsoft"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -686,8 +687,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 6: Nothing Phone */}
-        <div className="border-r border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/nothing-phone"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -710,7 +711,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 7: Nintendo */}
-        <div className="px-3 py-4">
+        <div className="px-2 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/nintendo"
@@ -734,8 +735,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 1: OnePlus */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/oneplus"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -768,8 +769,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 2: Oppo */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/oppo"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -802,8 +803,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 3: Realme */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/realme"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -836,8 +837,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 4: Sony */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/sony"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -870,8 +871,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 5: TCL */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/tcl"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -894,8 +895,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 6: Vivo */}
-        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-r border-gray-200 border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/vivo"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
@@ -928,8 +929,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Second Row: Column 7: Wiko */}
-        <div className="border-t border-gray-200 px-3 py-4">
-          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+        <div className="border-t border-gray-200 px-2 py-4">
+          <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/wiko"
               className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
