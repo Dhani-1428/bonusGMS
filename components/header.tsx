@@ -517,7 +517,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] max-w-[calc(100vw-1rem)] left-0"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] max-w-[calc(100vw-1rem)] right-0"
       style={{ 
         maxWidth: 'min(1400px, calc(100vw - 1rem))'
       }}
