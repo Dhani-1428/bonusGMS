@@ -1991,8 +1991,8 @@ export function Header() {
       </div>
 
       {/* ── Bottom bar (Utopya-style: Brands left, Product Types right) ── */}
-      <nav className="hidden border-b border-gray-200 bg-white md:block relative">
-        <div className="mx-auto flex max-w-7xl items-center px-4 py-2.5">
+      <nav className="hidden border-b border-gray-200 bg-white md:block relative overflow-visible">
+        <div className="mx-auto flex max-w-7xl items-center px-4 py-2.5 relative overflow-visible">
           {/* Left Section: Brands */}
           <div className="flex items-center gap-6 border-r border-gray-300 pr-6">
             <Wrench className="h-4 w-4 text-primary flex-shrink-0" />
