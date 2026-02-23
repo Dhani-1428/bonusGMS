@@ -16,6 +16,11 @@ import {
   ArrowLeftRight,
   X,
   Facebook,
+  Wrench,
+  Plug,
+  Shield,
+  Monitor,
+  Store,
 } from "lucide-react"
 import { categories, brands, searchProducts } from "@/lib/data"
 import type { Category, Brand } from "@/lib/data"
@@ -501,39 +506,173 @@ export function Header() {
         </div>
       </div>
 
-      {/* ── Bottom bar (category navigation links with uniform dropdowns) ── */}
-      <nav className="hidden border-b border-border bg-card md:block">
-        <div className="mx-auto flex max-w-7xl items-center px-4">
-          {categories.map((cat, index) => {
-            const isRightSide = index >= categories.length - 5
-            if (cat.children && cat.children.length > 0) {
+      {/* ── Bottom bar (Utopya-style: Brands left, Product Types right) ── */}
+      <nav className="hidden border-b border-gray-200 bg-white md:block">
+        <div className="mx-auto flex max-w-7xl items-center px-4 py-2.5">
+          {/* Left Section: Brands */}
+          <div className="flex items-center gap-6 border-r border-gray-300 pr-6">
+            <Wrench className="h-4 w-4 text-primary flex-shrink-0" />
+            {(() => {
+              // Get brands in the order shown in utopya.com: Apple, Samsung, Xiaomi, Honor, Motorola, Others
+              const brandOrder = ["Apple", "Samsung", "Xiaomi", "Honor", "Motorola"]
+              const orderedBrands = brandOrder
+                .map(name => brands.find(b => b.name === name))
+                .filter(Boolean) as Brand[]
+              
+              // Add "Others" as a special case
+              const otherBrands = brands.filter(b => !brandOrder.includes(b.name))
+              
               return (
-                <div key={cat.slug} className="group relative">
-                  <Link
-                    href={`/category/${cat.slug}`}
-                    className="flex items-center px-3 py-2.5 text-[13px] font-bold text-foreground hover:text-primary transition-colors"
-                  >
-                    {cat.name}
-                    <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                  {hasGrandchildren(cat) ? (
-                    <CategoryMegaMenu category={cat} alignRight={isRightSide} />
-                  ) : (
-                    <SimpleDropdown category={cat} alignRight={isRightSide} />
+                <>
+                  {orderedBrands.map((brand) => {
+                    // Find the LCD category for this brand
+                    let brandCategory: Category | undefined
+                    if (brand.name === "Apple") {
+                      brandCategory = categories.find((cat) => cat.slug === "lcd-for-iphone" || cat.name === "LCD for IPhone")
+                    } else if (brand.name === "Samsung") {
+                      brandCategory = categories.find((cat) => cat.slug === "lcd-samsung" || cat.name === "LCD Samsung")
+                    } else if (brand.name === "Xiaomi") {
+                      brandCategory = categories.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
+                    } else if (brand.name === "Honor") {
+                      brandCategory = categories.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
+                    } else if (brand.name === "Motorola") {
+                      brandCategory = categories.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
+                    }
+                    
+                    // Fallback: search by slug or name
+                    if (!brandCategory) {
+                      brandCategory = categories.find((cat) => 
+                        cat.slug.includes(brand.slug.toLowerCase()) || 
+                        cat.name.toLowerCase().includes(brand.name.toLowerCase())
+                      )
+                    }
+                    
+                    const hasDropdown = brandCategory?.children && brandCategory.children.length > 0
+                    
+                    return (
+                      <div key={brand.slug} className="group relative">
+                        <Link
+                          href={`/brand/${brand.slug}`}
+                          className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                        >
+                          {brand.name}
+                          {hasDropdown && (
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          )}
+                        </Link>
+                        {hasDropdown && brandCategory && (
+                          hasGrandchildren(brandCategory) ? (
+                            <CategoryMegaMenu category={brandCategory} alignRight={false} />
+                          ) : (
+                            <SimpleDropdown category={brandCategory} alignRight={false} />
+                          )
+                        )}
+                      </div>
+                    )
+                  })}
+                  {otherBrands.length > 0 && (
+                    <div className="group relative">
+                      <Link
+                        href="/brands"
+                        className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                      >
+                        Others
+                        <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                      </Link>
+                      <div className="absolute top-full left-0 z-50 hidden w-[200px] border border-border bg-card shadow-xl group-hover:block">
+                        <div className="py-2">
+                          {otherBrands.slice(0, 10).map((brand) => (
+                            <Link
+                              key={brand.slug}
+                              href={`/brand/${brand.slug}`}
+                              className="block px-3.5 py-[5px] text-[12px] text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                            >
+                              {brand.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   )}
-                </div>
+                </>
               )
-            }
-            return (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="px-3 py-2.5 text-[13px] font-bold text-foreground hover:text-primary transition-colors"
-              >
-                {cat.name}
-              </Link>
-            )
-          })}
+            })()}
+          </div>
+
+          {/* Right Section: Product Types */}
+          <div className="flex items-center gap-6 pl-6">
+            <Link
+              href="/category/parts"
+              className="group relative flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+            >
+              <Plug className="h-4 w-4 text-primary mr-1.5 flex-shrink-0" />
+              Accessories
+              <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+              {(() => {
+                const accessoriesCat = categories.find(cat => cat.slug === "parts" || cat.name.toLowerCase().includes("accessories"))
+                if (accessoriesCat && accessoriesCat.children && accessoriesCat.children.length > 0) {
+                  return hasGrandchildren(accessoriesCat) ? (
+                    <CategoryMegaMenu category={accessoriesCat} alignRight={true} />
+                  ) : (
+                    <SimpleDropdown category={accessoriesCat} alignRight={true} />
+                  )
+                }
+              })()}
+            </Link>
+            
+            <Link
+              href="/category/glass-protector"
+              className="group relative flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+            >
+              <Shield className="h-4 w-4 text-primary mr-1.5 flex-shrink-0" />
+              Protection
+              <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+              {(() => {
+                const protectionCat = categories.find(cat => cat.slug === "glass-protector" || cat.name.toLowerCase().includes("protection"))
+                if (protectionCat && protectionCat.children && protectionCat.children.length > 0) {
+                  return hasGrandchildren(protectionCat) ? (
+                    <CategoryMegaMenu category={protectionCat} alignRight={true} />
+                  ) : (
+                    <SimpleDropdown category={protectionCat} alignRight={true} />
+                  )
+                }
+              })()}
+            </Link>
+            
+            <Link
+              href="/category/lcd"
+              className="group relative flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+            >
+              <Monitor className="h-4 w-4 text-primary mr-1.5 flex-shrink-0" />
+              Computing
+              <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+              {(() => {
+                const computingCat = categories.find(cat => 
+                  cat.slug === "lcd" || 
+                  cat.slug === "lcd-laptop" || 
+                  cat.slug === "lcd-for-ipad" ||
+                  cat.slug === "lcd-for-macbook" ||
+                  cat.name.toLowerCase().includes("computing") ||
+                  cat.name.toLowerCase().includes("laptop")
+                )
+                if (computingCat && computingCat.children && computingCat.children.length > 0) {
+                  return hasGrandchildren(computingCat) ? (
+                    <CategoryMegaMenu category={computingCat} alignRight={true} />
+                  ) : (
+                    <SimpleDropdown category={computingCat} alignRight={true} />
+                  )
+                }
+              })()}
+            </Link>
+            
+            <Link
+              href="/store"
+              className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+            >
+              <Store className="h-4 w-4 text-primary mr-1.5 flex-shrink-0" />
+              Store
+            </Link>
+          </div>
         </div>
       </nav>
     </header>
