@@ -171,25 +171,27 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className={`absolute top-full z-50 hidden border border-border bg-card shadow-xl group-hover:block w-[1120px] ${
+      className={`absolute top-full z-50 hidden border border-border bg-white shadow-xl group-hover:block w-[1000px] ${
         alignRight ? "right-0" : "left-0"
       }`}
     >
-      <div className="grid grid-cols-7 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+      <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: iPhone */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-iphone"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            IPHONE
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-iphone"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              iPhone
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
             {iphoneModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -199,19 +201,21 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 2: Apple Watch */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-apple-watch"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            APPLE WATCH
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-apple-watch"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Apple Watch
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
             {appleWatchModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -220,20 +224,45 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           </ul>
         </div>
 
-        {/* Column 3: iPad Pro */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-ipad"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            IPAD PRO
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        {/* Column 3: iPad Pro + iPad mini */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* iPad Pro Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-ipad"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              iPad Pro
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
             {ipadProModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* iPad mini Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-ipad"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              iPad mini
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {ipadMiniModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -242,20 +271,45 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           </ul>
         </div>
 
-        {/* Column 4: iPad */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-ipad"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            IPAD
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        {/* Column 4: iPad + iPad Air */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* iPad Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-ipad"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              iPad
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
             {standardIpadModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* iPad Air Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-ipad"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              iPad Air
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {ipadAirModels.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -265,63 +319,21 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
         </div>
 
         {/* Column 5: MacBook */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-macbook"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            MACBOOK
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
+        <div className="px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/lcd-macbook"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              MacBook
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
             {macbookModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
-                >
-                  {model.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Column 6: iPad Air */}
-        <div className="border-r border-border px-4 py-3">
-          <Link
-            href="/category/lcd-ipad"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            IPAD AIR
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-            {ipadAirModels.map((model) => (
-              <li key={model.slug}>
-                <Link
-                  href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
-                >
-                  {model.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Column 7: iPad mini */}
-        <div className="px-4 py-3">
-          <Link
-            href="/category/lcd-ipad"
-            className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
-          >
-            IPAD MINI
-          </Link>
-          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-            {ipadMiniModels.map((model) => (
-              <li key={model.slug}>
-                <Link
-                  href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
                 >
                   {model.name}
                 </Link>
