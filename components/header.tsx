@@ -488,6 +488,149 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
   )
 }
 
+/* ─── Honor Mega Menu: 5-column layout (Magic, Numbered Series, X Series, N, Autres) ─── */
+function HonorMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const honorCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-honor")
+
+  // Organize Honor series
+  const honorMagic = honorCat?.children?.find(series => series.slug === "honor-magic")
+  const honorNumbered = honorCat?.children?.find(series => series.slug === "honor-numbered")
+  const honorX = honorCat?.children?.find(series => series.slug === "honor-x")
+  const honorN = honorCat?.children?.find(series => series.slug === "honor-n")
+  const honorAutres = honorCat?.children?.find(series => series.slug === "honor-autres")
+
+  return (
+    <div
+      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] ${
+        alignRight ? "right-0" : "left-0"
+      }`}
+    >
+      <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Honor Magic */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/honor-magic"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Honor Magic
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {honorMagic?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Honor Numbered Series */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/honor-numbered"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Honor Numbered
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {honorNumbered?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: Honor X */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/honor-x"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Honor X
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {honorX?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Honor N */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/honor-n"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Honor N
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {honorN?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 5: Autres */}
+        <div className="px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/honor-autres"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Autres
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {honorAutres?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Apple Mega Menu: 5-column layout (iPhone, Apple Watch, iPad Pro+mini, iPad+Air, MacBook) ─── */
 function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
   // Find LCD category first, then find children within it
@@ -1290,12 +1433,26 @@ export function Header() {
                       )
                     }
                     
+                    // Special handling for Honor - use the 5-column mega menu
+                    if (brand.name === "Honor") {
+                      return (
+                        <div key={brand.slug} className="group relative">
+                          <Link
+                            href={`/brand/${brand.slug}`}
+                            className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                          >
+                            {brand.name}
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </Link>
+                          <HonorMegaMenu alignRight={false} />
+                        </div>
+                      )
+                    }
+                    
                     // Find the LCD category for other brands
                     const lcdCategory = categories.find(cat => cat.slug === "lcd")
                     let brandCategory: Category | undefined
-                    if (brand.name === "Honor") {
-                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
-                    } else if (brand.name === "Motorola") {
+                    if (brand.name === "Motorola") {
                       brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
                     }
                     
