@@ -77,11 +77,11 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className={`absolute top-full left-0 z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[900px] mt-0`}
+      className={`absolute top-full left-0 z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] mt-0`}
     >
-      <div className="grid grid-cols-3 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      <div className="grid grid-cols-6 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: Galaxy A */}
-        <div className="border-r border-gray-200 px-4 py-4">
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/galaxy-a"
@@ -104,9 +104,8 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
           </ul>
         </div>
 
-        {/* Column 2: Galaxy S, Galaxy M, Galaxy Note */}
-        <div className="border-r border-gray-200 px-4 py-4">
-          {/* Galaxy S Section */}
+        {/* Column 2: Galaxy S */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/galaxy-s"
@@ -115,7 +114,7 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Galaxy S
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {galaxyS?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -127,7 +126,10 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
+        {/* Column 3: Galaxy M, Galaxy Note */}
+        <div className="border-r border-gray-200 px-3 py-4">
           {/* Galaxy M Section */}
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
@@ -173,8 +175,8 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
           </ul>
         </div>
 
-        {/* Column 3: Galaxy J, Galaxy Z, Galaxy Tab, Galaxy XCover, Galaxy Watch */}
-        <div className="px-4 py-4">
+        {/* Column 4: Galaxy J, Galaxy Z */}
+        <div className="border-r border-gray-200 px-3 py-4">
           {/* Galaxy J Section */}
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
@@ -206,7 +208,7 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Galaxy Z
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {galaxyZ?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -218,8 +220,10 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* Galaxy Tab Section */}
+        {/* Column 5: Galaxy Tab */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/galaxy-tab"
@@ -228,7 +232,7 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Galaxy Tab
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {galaxyTab?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -240,7 +244,10 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
+        {/* Column 6: Galaxy XCover, Galaxy Watch */}
+        <div className="px-3 py-4">
           {/* Galaxy XCover Section */}
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
