@@ -77,9 +77,9 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2 mt-0"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-1rem)] left-0 mt-0"
       style={{ 
-        maxWidth: 'min(1200px, calc(100vw - 2rem))'
+        maxWidth: 'min(1200px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-6 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -316,9 +316,9 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2 mt-0"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-1rem)] left-0 mt-0"
       style={{ 
-        maxWidth: 'min(1200px, calc(100vw - 2rem))'
+        maxWidth: 'min(1200px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -517,9 +517,9 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] max-w-[calc(100vw-1rem)] left-0"
       style={{ 
-        maxWidth: 'min(1400px, calc(100vw - 2rem))'
+        maxWidth: 'min(1400px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -977,9 +977,9 @@ function MotorolaMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-1rem)] left-0"
       style={{ 
-        maxWidth: 'min(1000px, calc(100vw - 2rem))'
+        maxWidth: 'min(1000px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -1121,9 +1121,9 @@ function HonorMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-1rem)] left-0"
       style={{ 
-        maxWidth: 'min(1000px, calc(100vw - 2rem))'
+        maxWidth: 'min(1000px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
@@ -1363,9 +1363,9 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-2rem)] left-1/2 -translate-x-1/2"
+      className="absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1000px] max-w-[calc(100vw-1rem)] left-0"
       style={{ 
-        maxWidth: 'min(1000px, calc(100vw - 2rem))'
+        maxWidth: 'min(1000px, calc(100vw - 1rem))'
       }}
     >
       <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
