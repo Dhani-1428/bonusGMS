@@ -60,10 +60,11 @@ function CategoryMegaMenu({ category, alignRight }: { category: Category; alignR
   const withKids = category.children?.filter((c) => c.children && c.children.length > 0) ?? []
   const withoutKids = category.children?.filter((c) => !c.children || c.children.length === 0) ?? []
 
+  // Calculate number of columns (max 4 columns like the image)
   const totalWithKids = withKids.length
-  const cols = totalWithKids <= 4 ? 2 : totalWithKids <= 9 ? 3 : 4
-  const colClass = cols === 2 ? "grid-cols-2" : cols === 3 ? "grid-cols-3" : "grid-cols-4"
-  const widthClass = cols === 2 ? "w-[440px]" : cols === 3 ? "w-[640px]" : "w-[840px]"
+  const cols = totalWithKids <= 4 ? totalWithKids : 4
+  const colClass = cols === 1 ? "grid-cols-1" : cols === 2 ? "grid-cols-2" : cols === 3 ? "grid-cols-3" : "grid-cols-4"
+  const widthClass = cols === 1 ? "w-[240px]" : cols === 2 ? "w-[480px]" : cols === 3 ? "w-[720px]" : "w-[960px]"
 
   return (
     <div
@@ -86,37 +87,39 @@ function CategoryMegaMenu({ category, alignRight }: { category: Category; alignR
         </div>
       )}
 
-      {/* Grid of subcategories that have grandchildren */}
-      <div className={`grid ${colClass} max-h-[400px] overflow-y-auto`}>
+      {/* Grid of subcategories that have grandchildren - Column layout like image */}
+      <div className={`grid ${colClass} max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent`}>
         {withKids.map((child) => (
           <div
             key={child.slug}
-            className="border-b border-r border-border px-3 py-2.5 hover:bg-primary/[0.02] transition-colors"
+            className="border-r border-border last:border-r-0 px-4 py-3 hover:bg-primary/[0.02] transition-colors"
           >
+            {/* Blue bold title */}
             <Link
               href={`/category/${child.slug}`}
-              className="text-[11px] font-bold uppercase tracking-wide text-primary hover:underline"
+              className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
             >
               {child.name}
             </Link>
-            <ul className="mt-1 flex flex-col">
-              {child.children!.slice(0, 6).map((grandchild) => (
+            {/* Items list */}
+            <ul className="flex flex-col space-y-0.5">
+              {child.children!.slice(0, 7).map((grandchild) => (
                 <li key={grandchild.slug}>
                   <Link
                     href={`/category/${grandchild.slug}`}
-                    className="block py-[2px] text-[11px] leading-tight text-muted-foreground hover:text-primary transition-colors"
+                    className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
                   >
                     {grandchild.name}
                   </Link>
                 </li>
               ))}
-              {child.children!.length > 6 && (
+              {child.children!.length > 7 && (
                 <li>
                   <Link
                     href={`/category/${child.slug}`}
-                    className="block py-[2px] text-[10px] font-semibold text-primary hover:underline"
+                    className="block py-1 text-[11px] font-semibold text-primary hover:underline"
                   >
-                    + {child.children!.length - 6} more
+                    + {child.children!.length - 7} more
                   </Link>
                 </li>
               )}
