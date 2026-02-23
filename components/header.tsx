@@ -828,21 +828,22 @@ export function Header() {
                       )
                     }
                     
-                    // Find the LCD category for other brands
+                    // Find the LCD category first, then find children within it
+                    const lcdCategory = categories.find(cat => cat.slug === "lcd")
                     let brandCategory: Category | undefined
                     if (brand.name === "Samsung") {
-                      brandCategory = categories.find((cat) => cat.slug === "lcd-samsung" || cat.name === "LCD Samsung")
+                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-samsung" || cat.name === "LCD Samsung")
                     } else if (brand.name === "Xiaomi") {
-                      brandCategory = categories.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
+                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
                     } else if (brand.name === "Honor") {
-                      brandCategory = categories.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
+                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
                     } else if (brand.name === "Motorola") {
-                      brandCategory = categories.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
+                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
                     }
                     
-                    // Fallback: search by slug or name
-                    if (!brandCategory) {
-                      brandCategory = categories.find((cat) => 
+                    // Fallback: search by slug or name within LCD category
+                    if (!brandCategory && lcdCategory) {
+                      brandCategory = lcdCategory.children?.find((cat) => 
                         cat.slug.includes(brand.slug.toLowerCase()) || 
                         cat.name.toLowerCase().includes(brand.name.toLowerCase())
                       )
