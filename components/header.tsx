@@ -59,7 +59,240 @@ function SimpleDropdown({ category, alignRight }: { category: Category; alignRig
   )
 }
 
-/* ─── Apple Mega Menu: 7-column layout (iPhone, Apple Watch, iPad Pro, iPad, MacBook, iPad Air, iPad mini) ─── */
+/* ─── Samsung Mega Menu: 3-column layout (Galaxy A, Galaxy S/M/Note, Galaxy J/Z/Tab/XCover/Watch) ─── */
+function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const samsungCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-samsung")
+
+  // Organize Samsung series
+  const galaxyA = samsungCat?.children?.find(series => series.slug === "galaxy-a")
+  const galaxyS = samsungCat?.children?.find(series => series.slug === "galaxy-s")
+  const galaxyM = samsungCat?.children?.find(series => series.slug === "galaxy-m")
+  const galaxyNote = samsungCat?.children?.find(series => series.slug === "galaxy-note")
+  const galaxyJ = samsungCat?.children?.find(series => series.slug === "galaxy-j")
+  const galaxyZ = samsungCat?.children?.find(series => series.slug === "galaxy-z")
+  const galaxyTab = samsungCat?.children?.find(series => series.slug === "galaxy-tab")
+  const galaxyXCover = samsungCat?.children?.find(series => series.slug === "galaxy-xcover")
+  const galaxyWatch = samsungCat?.children?.find(series => series.slug === "galaxy-watch")
+
+  return (
+    <div
+      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[900px] ${
+        alignRight ? "right-0" : "left-0"
+      }`}
+    >
+      <div className="grid grid-cols-3 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Galaxy A */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-a"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy A
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {galaxyA?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Galaxy S, Galaxy M, Galaxy Note */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* Galaxy S Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-s"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy S
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyS?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy M Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-m"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy M
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyM?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy Note Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-note"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy Note
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {galaxyNote?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: Galaxy J, Galaxy Z, Galaxy Tab, Galaxy XCover, Galaxy Watch */}
+        <div className="px-4 py-4">
+          {/* Galaxy J Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-j"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy J
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyJ?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy Z Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-z"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy Z
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyZ?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy Tab Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-tab"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy Tab
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyTab?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy XCover Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-xcover"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy XCover
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {galaxyXCover?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Galaxy Watch Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/galaxy-watch"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Galaxy Watch
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {galaxyWatch?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─── Apple Mega Menu: 5-column layout (iPhone, Apple Watch, iPad Pro+mini, iPad+Air, MacBook) ─── */
 function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
   // Find LCD category first, then find children within it
   const lcdCategory = categories.find(cat => cat.slug === "lcd")
