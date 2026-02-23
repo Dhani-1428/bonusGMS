@@ -71,25 +71,27 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
   
   // Organize iPad Pro models (from iPad category)
   const ipadProModels = ipadCat?.children?.filter(item => 
-    item.name.toLowerCase().includes("pro")
+    item.name.toLowerCase().includes("ipad pro")
   ) || []
   
-  // Organize standard iPad models
-  const standardIpadModels = ipadCat?.children?.filter(item => 
-    !item.name.toLowerCase().includes("pro") &&
-    !item.name.toLowerCase().includes("air") &&
-    !item.name.toLowerCase().includes("mini") &&
-    item.name.toLowerCase().startsWith("ipad")
-  ) || []
+  // Organize standard iPad models (iPad with number, not Pro/Air/mini)
+  const standardIpadModels = ipadCat?.children?.filter(item => {
+    const name = item.name.toLowerCase()
+    return name.startsWith("ipad ") && 
+           !name.includes("pro") && 
+           !name.includes("air") && 
+           !name.includes("mini") &&
+           /ipad \d+/.test(name)
+  }) || []
   
   // Organize iPad Air models
   const ipadAirModels = ipadCat?.children?.filter(item => 
-    item.name.toLowerCase().includes("air")
+    item.name.toLowerCase().includes("ipad air")
   ) || []
   
   // Organize iPad mini models
   const ipadMiniModels = ipadCat?.children?.filter(item => 
-    item.name.toLowerCase().includes("mini")
+    item.name.toLowerCase().includes("ipad mini")
   ) || []
 
   // Apple Watch models (we'll create a simple list)
@@ -211,12 +213,12 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           >
             iPad Pro
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadProModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -233,12 +235,12 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           >
             iPad
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {standardIpadModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -277,12 +279,12 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           >
             iPad Air
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadAirModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -299,12 +301,12 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
           >
             iPad mini
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadMiniModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
