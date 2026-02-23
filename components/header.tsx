@@ -527,7 +527,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
     >
       <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {/* Column 1: Asus */}
-        <div className="border-r border-gray-200 px-3 py-4">
+        <div className="border-r border-gray-200 px-2 py-4">
           <div className="bg-gray-100 rounded-md px-2 py-1.5 mb-3">
             <Link
               href="/category/asus"
