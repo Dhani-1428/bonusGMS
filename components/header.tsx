@@ -488,6 +488,361 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
   )
 }
 
+/* ─── Others Mega Menu: 5-column layout ─── */
+function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const othersCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-others")
+
+  // Organize brands into columns
+  const asus = othersCat?.children?.find(brand => brand.slug === "asus")
+  const blackview = othersCat?.children?.find(brand => brand.slug === "blackview")
+  const google = othersCat?.children?.find(brand => brand.slug === "google")
+  const huawei = othersCat?.children?.find(brand => brand.slug === "huawei")
+  const microsoft = othersCat?.children?.find(brand => brand.slug === "microsoft")
+  const nothingPhone = othersCat?.children?.find(brand => brand.slug === "nothing-phone")
+  const nintendo = othersCat?.children?.find(brand => brand.slug === "nintendo")
+  const oneplus = othersCat?.children?.find(brand => brand.slug === "oneplus")
+  const oppo = othersCat?.children?.find(brand => brand.slug === "oppo")
+  const realme = othersCat?.children?.find(brand => brand.slug === "realme")
+  const sony = othersCat?.children?.find(brand => brand.slug === "sony")
+  const tcl = othersCat?.children?.find(brand => brand.slug === "tcl")
+  const vivo = othersCat?.children?.find(brand => brand.slug === "vivo")
+  const wiko = othersCat?.children?.find(brand => brand.slug === "wiko")
+
+  return (
+    <div
+      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-2rem)] ${
+        alignRight ? "right-0" : "left-0"
+      }`}
+    >
+      <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Asus, Blackview, Google */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* Asus Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/asus"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Asus
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {asus?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Blackview Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/blackview"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Blackview
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {blackview?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Google Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/google"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Google
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {google?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Huawei, Microsoft */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* Huawei Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/huawei"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Huawei
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {huawei?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Microsoft Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/microsoft"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Microsoft
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {microsoft?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: Nothing Phone, Nintendo, OnePlus */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* Nothing Phone Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/nothing-phone"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Nothing Phone
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {nothingPhone?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Nintendo Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/nintendo"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Nintendo
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {nintendo?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* OnePlus Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/oneplus"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              OnePlus
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {oneplus?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Oppo, Realme */}
+        <div className="border-r border-gray-200 px-4 py-4">
+          {/* Oppo Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/oppo"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Oppo
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {oppo?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Realme Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/realme"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Realme
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {realme?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 5: Sony, TCL, Vivo, Wiko */}
+        <div className="px-4 py-4">
+          {/* Sony Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/sony"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Sony
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {sony?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* TCL Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/tcl"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              TCL
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {tcl?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Vivo Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/vivo"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Vivo
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5 mb-6">
+            {vivo?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Wiko Section */}
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/wiko"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Wiko
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {wiko?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Motorola Mega Menu: 5-column layout (Razr, Edge, Moto G, Moto E, ThinkPhone) ─── */
 function MotorolaMegaMenu({ alignRight }: { alignRight?: boolean }) {
   const lcdCategory = categories.find(cat => cat.slug === "lcd")
@@ -1652,19 +2007,7 @@ export function Header() {
                         Others
                         <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
                       </Link>
-                      <div className="absolute top-full left-0 z-50 hidden w-[200px] border border-border bg-card shadow-xl group-hover:block">
-                        <div className="py-2">
-                          {otherBrands.slice(0, 10).map((brand) => (
-                            <Link
-                              key={brand.slug}
-                              href={`/brand/${brand.slug}`}
-                              className="block px-3.5 py-[5px] text-[12px] text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
-                            >
-                              {brand.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+                      <OthersMegaMenu alignRight={false} />
                     </div>
                   )}
                 </>
