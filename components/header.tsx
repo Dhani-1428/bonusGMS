@@ -297,6 +297,197 @@ function SamsungMegaMenu({ alignRight }: { alignRight?: boolean }) {
   )
 }
 
+/* ─── Xiaomi Mega Menu: 7-column layout ─── */
+function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
+  const lcdCategory = categories.find(cat => cat.slug === "lcd")
+  const xiaomiCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-xiaomi")
+
+  // Organize Xiaomi series
+  const redmi = xiaomiCat?.children?.find(series => series.slug === "redmi")
+  const redmiNote = xiaomiCat?.children?.find(series => series.slug === "redmi-note")
+  const xiaomiSeries = xiaomiCat?.children?.find(series => series.slug === "xiaomi-series")
+  const miSeries = xiaomiCat?.children?.find(series => series.slug === "mi-series")
+  const pocoSeries = xiaomiCat?.children?.find(series => series.slug === "poco-series")
+  const mobiliteUrbaine = xiaomiCat?.children?.find(series => series.slug === "mobilite-urbaine")
+  const padSeries = xiaomiCat?.children?.find(series => series.slug === "pad-series")
+
+  return (
+    <div
+      className={`absolute top-full left-0 z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] mt-0`}
+    >
+      <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Redmi */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/redmi"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Redmi
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {redmi?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 2: Redmi Note */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/redmi-note"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Redmi Note
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {redmiNote?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3: Xiaomi */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/xiaomi-series"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Xiaomi
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {xiaomiSeries?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 4: Mi */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/mi-series"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Mi
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {miSeries?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 5: Poco */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/poco-series"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Poco
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {pocoSeries?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 6: Mobilité Urbaine */}
+        <div className="border-r border-gray-200 px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/mobilite-urbaine"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Mobilité Urbaine
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {mobiliteUrbaine?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 7: Pad */}
+        <div className="px-3 py-4">
+          <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
+            <Link
+              href="/category/pad-series"
+              className="block text-[12px] font-semibold text-gray-700 hover:text-primary"
+            >
+              Pad
+            </Link>
+          </div>
+          <ul className="flex flex-col space-y-0.5">
+            {padSeries?.children?.map((model) => (
+              <li key={model.slug}>
+                <Link
+                  href={`/category/${model.slug}`}
+                  className="block py-1 text-[12px] leading-tight text-gray-900 hover:text-primary transition-colors"
+                >
+                  {model.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── Apple Mega Menu: 5-column layout (iPhone, Apple Watch, iPad Pro+mini, iPad+Air, MacBook) ─── */
 function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
   // Find LCD category first, then find children within it
@@ -1083,12 +1274,26 @@ export function Header() {
                       )
                     }
                     
+                    // Special handling for Xiaomi - use the 7-column mega menu
+                    if (brand.name === "Xiaomi") {
+                      return (
+                        <div key={brand.slug} className="group relative">
+                          <Link
+                            href={`/brand/${brand.slug}`}
+                            className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                          >
+                            {brand.name}
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </Link>
+                          <XiaomiMegaMenu alignRight={false} />
+                        </div>
+                      )
+                    }
+                    
                     // Find the LCD category for other brands
                     const lcdCategory = categories.find(cat => cat.slug === "lcd")
                     let brandCategory: Category | undefined
-                    if (brand.name === "Xiaomi") {
-                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
-                    } else if (brand.name === "Honor") {
+                    if (brand.name === "Honor") {
                       brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
                     } else if (brand.name === "Motorola") {
                       brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-motorola" || cat.name === "LCD Motorola")
