@@ -488,12 +488,12 @@ function XiaomiMegaMenu({ alignRight }: { alignRight?: boolean }) {
   )
 }
 
-/* ─── Others Mega Menu: 5-column layout ─── */
+/* ─── Others Mega Menu: 7-column layout matching image ─── */
 function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
   const lcdCategory = categories.find(cat => cat.slug === "lcd")
   const othersCat = lcdCategory?.children?.find(cat => cat.slug === "lcd-others")
 
-  // Organize brands into columns
+  // Organize brands into columns (each brand gets its own column)
   const asus = othersCat?.children?.find(brand => brand.slug === "asus")
   const blackview = othersCat?.children?.find(brand => brand.slug === "blackview")
   const google = othersCat?.children?.find(brand => brand.slug === "google")
@@ -511,14 +511,13 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
 
   return (
     <div
-      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1200px] max-w-[calc(100vw-2rem)] ${
+      className={`absolute top-full z-50 hidden border border-gray-200 bg-white shadow-xl group-hover:block w-[1400px] max-w-[calc(100vw-2rem)] ${
         alignRight ? "right-0" : "left-0"
       }`}
     >
-      <div className="grid grid-cols-5 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-        {/* Column 1: Asus, Blackview, Google */}
-        <div className="border-r border-gray-200 px-4 py-4">
-          {/* Asus Section */}
+      <div className="grid grid-cols-7 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+        {/* Column 1: Asus */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/asus"
@@ -527,8 +526,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Asus
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
-            {asus?.children?.map((model) => (
+          <ul className="flex flex-col space-y-0.5">
+            {asus?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -538,9 +537,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {asus && asus.children && asus.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/asus"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
+        </div>
 
-          {/* Blackview Section */}
+        {/* Column 2: Blackview */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/blackview"
@@ -549,7 +560,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Blackview
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {blackview?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -561,8 +572,10 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* Google Section */}
+        {/* Column 3: Google */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/google"
@@ -572,7 +585,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
             </Link>
           </div>
           <ul className="flex flex-col space-y-0.5">
-            {google?.children?.map((model) => (
+            {google?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -582,12 +595,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {google && google.children && google.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/google"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
-        {/* Column 2: Huawei, Microsoft */}
-        <div className="border-r border-gray-200 px-4 py-4">
-          {/* Huawei Section */}
+        {/* Column 4: Huawei */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/huawei"
@@ -596,8 +618,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Huawei
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
-            {huawei?.children?.map((model) => (
+          <ul className="flex flex-col space-y-0.5">
+            {huawei?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -607,9 +629,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {huawei && huawei.children && huawei.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/huawei"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
+        </div>
 
-          {/* Microsoft Section */}
+        {/* Column 5: Microsoft */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/microsoft"
@@ -619,7 +653,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
             </Link>
           </div>
           <ul className="flex flex-col space-y-0.5">
-            {microsoft?.children?.map((model) => (
+            {microsoft?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -629,12 +663,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {microsoft && microsoft.children && microsoft.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/microsoft"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
-        {/* Column 3: Nothing Phone, Nintendo, OnePlus */}
-        <div className="border-r border-gray-200 px-4 py-4">
-          {/* Nothing Phone Section */}
+        {/* Column 6: Nothing Phone */}
+        <div className="border-r border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/nothing-phone"
@@ -643,7 +686,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Nothing Phone
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {nothingPhone?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -655,8 +698,10 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* Nintendo Section */}
+        {/* Column 7: Nintendo */}
+        <div className="px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/nintendo"
@@ -665,7 +710,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Nintendo
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {nintendo?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -677,8 +722,10 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* OnePlus Section */}
+        {/* Second Row: Column 1: OnePlus */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/oneplus"
@@ -688,7 +735,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
             </Link>
           </div>
           <ul className="flex flex-col space-y-0.5">
-            {oneplus?.children?.map((model) => (
+            {oneplus?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -698,12 +745,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {oneplus && oneplus.children && oneplus.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/oneplus"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
-        {/* Column 4: Oppo, Realme */}
-        <div className="border-r border-gray-200 px-4 py-4">
-          {/* Oppo Section */}
+        {/* Second Row: Column 2: Oppo */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/oppo"
@@ -712,8 +768,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Oppo
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
-            {oppo?.children?.map((model) => (
+          <ul className="flex flex-col space-y-0.5">
+            {oppo?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -723,9 +779,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {oppo && oppo.children && oppo.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/oppo"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
+        </div>
 
-          {/* Realme Section */}
+        {/* Second Row: Column 3: Realme */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/realme"
@@ -735,7 +803,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
             </Link>
           </div>
           <ul className="flex flex-col space-y-0.5">
-            {realme?.children?.map((model) => (
+            {realme?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -745,12 +813,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {realme && realme.children && realme.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/realme"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
-        {/* Column 5: Sony, TCL, Vivo, Wiko */}
-        <div className="px-4 py-4">
-          {/* Sony Section */}
+        {/* Second Row: Column 4: Sony */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/sony"
@@ -759,8 +836,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Sony
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
-            {sony?.children?.map((model) => (
+          <ul className="flex flex-col space-y-0.5">
+            {sony?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -770,9 +847,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {sony && sony.children && sony.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/sony"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
+        </div>
 
-          {/* TCL Section */}
+        {/* Second Row: Column 5: TCL */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/tcl"
@@ -781,7 +870,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               TCL
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
+          <ul className="flex flex-col space-y-0.5">
             {tcl?.children?.map((model) => (
               <li key={model.slug}>
                 <Link
@@ -793,8 +882,10 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               </li>
             ))}
           </ul>
+        </div>
 
-          {/* Vivo Section */}
+        {/* Second Row: Column 6: Vivo */}
+        <div className="border-r border-gray-200 border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/vivo"
@@ -803,8 +894,8 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
               Vivo
             </Link>
           </div>
-          <ul className="flex flex-col space-y-0.5 mb-6">
-            {vivo?.children?.map((model) => (
+          <ul className="flex flex-col space-y-0.5">
+            {vivo?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -814,9 +905,21 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {vivo && vivo.children && vivo.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/vivo"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
+        </div>
 
-          {/* Wiko Section */}
+        {/* Second Row: Column 7: Wiko */}
+        <div className="border-t border-gray-200 px-3 py-4">
           <div className="bg-gray-100 rounded-md px-3 py-1.5 mb-3">
             <Link
               href="/category/wiko"
@@ -826,7 +929,7 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
             </Link>
           </div>
           <ul className="flex flex-col space-y-0.5">
-            {wiko?.children?.map((model) => (
+            {wiko?.children?.slice(0, 8).map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
@@ -836,6 +939,16 @@ function OthersMegaMenu({ alignRight }: { alignRight?: boolean }) {
                 </Link>
               </li>
             ))}
+            {wiko && wiko.children && wiko.children.length > 8 && (
+              <li className="mt-2">
+                <Link
+                  href="/category/wiko"
+                  className="block py-1 text-[12px] font-semibold text-primary hover:underline"
+                >
+                  See All
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
