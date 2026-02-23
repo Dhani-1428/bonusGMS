@@ -202,14 +202,14 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-apple-watch"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            Apple Watch
+            APPLE WATCH
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {appleWatchModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -224,7 +224,7 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-ipad"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            iPad Pro
+            IPAD PRO
           </Link>
           <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadProModels.map((model) => (
@@ -246,7 +246,7 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-ipad"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            iPad
+            IPAD
           </Link>
           <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {standardIpadModels.map((model) => (
@@ -268,14 +268,14 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-macbook"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            MacBook
+            MACBOOK
           </Link>
-          <ul className="flex flex-col space-y-0.5">
+          <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {macbookModels.map((model) => (
               <li key={model.slug}>
                 <Link
                   href={`/category/${model.slug}`}
-                  className="block py-1 text-[11px] leading-tight text-foreground hover:text-primary transition-colors"
+                  className="block py-1 text-[11px] leading-tight text-primary hover:opacity-80 transition-colors"
                 >
                   {model.name}
                 </Link>
@@ -290,7 +290,7 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-ipad"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            iPad Air
+            IPAD AIR
           </Link>
           <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadAirModels.map((model) => (
@@ -312,7 +312,7 @@ function AppleMegaMenu({ alignRight }: { alignRight?: boolean }) {
             href="/category/lcd-ipad"
             className="block mb-2 text-[12px] font-bold uppercase tracking-wide text-primary hover:underline"
           >
-            iPad mini
+            IPAD MINI
           </Link>
           <ul className="flex flex-col space-y-0.5 max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             {ipadMiniModels.map((model) => (
