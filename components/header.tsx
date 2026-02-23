@@ -1062,11 +1062,26 @@ export function Header() {
                     }
                     
                     // Find the LCD category first, then find children within it
+                    // Special handling for Samsung - use the 3-column mega menu
+                    if (brand.name === "Samsung") {
+                      return (
+                        <div key={brand.slug} className="group relative">
+                          <Link
+                            href={`/brand/${brand.slug}`}
+                            className="flex items-center text-[13px] font-semibold text-gray-700 hover:text-primary transition-colors"
+                          >
+                            {brand.name}
+                            <ChevronDown className="ml-0.5 h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                          </Link>
+                          <SamsungMegaMenu alignRight={false} />
+                        </div>
+                      )
+                    }
+                    
+                    // Find the LCD category for other brands
                     const lcdCategory = categories.find(cat => cat.slug === "lcd")
                     let brandCategory: Category | undefined
-                    if (brand.name === "Samsung") {
-                      brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-samsung" || cat.name === "LCD Samsung")
-                    } else if (brand.name === "Xiaomi") {
+                    if (brand.name === "Xiaomi") {
                       brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-xiaomi" || cat.name === "LCD Xiaomi")
                     } else if (brand.name === "Honor") {
                       brandCategory = lcdCategory?.children?.find((cat) => cat.slug === "lcd-honor" || cat.name === "LCD Honor")
